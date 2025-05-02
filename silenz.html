@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>SILENZ</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <style>
+    /* Estilo oscuro más intuitivo */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #e0e0e0;
+      font-family: 'Source Code Pro', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #password-modal {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(26, 26, 46, 0.95);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #password-modal input {
+      padding: 1rem;
+      font-size: 1rem;
+      border: 2px solid #0ea5e9;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+      width: 250px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    #password-modal input:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    button {
+      transition: all 0.3s ease;
+    }
+
+    #password-modal button, button.action {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border: 2px solid #0ea5e9;
+      border-radius: 8px;
+      background: transparent;
+      color: #0ea5e9;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    #password-modal button:hover, button.action:hover {
+      background: #0ea5e9;
+      color: #1a1a2e;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    }
+
+    #container {
+      display: none;
+      width: 90%;
+      max-width: 1200px;
+      gap: 2rem;
+      flex-direction: column;
+      padding: 2rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .section-title {
+      grid-column: 1 / -1;
+      color: #38bdf8;
+      font-size: 1rem;
+      text-align: left;
+      margin: 0;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+      letter-spacing: 2px;
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .copy-paste-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: 1px solid #0ea5e9;
+      border-radius: 6px;
+      background: transparent;
+      color: #0ea5e9;
+      cursor: pointer;
+    }
+
+    .copy-paste-btn:hover {
+      background: #0ea5e9;
+      color: #1a1a2e;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+    }
+
+    .buttons-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    h1 {
+      margin: 0 0 2rem 0;
+      color: #38bdf8;
+      font-size: 2.5rem;
+      text-align: center;
+      letter-spacing: 4px;
+      text-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+    }
+
+    textarea {
+      width: 100%;
+      height: 6rem;
+      background: rgba(255,255,255,0.03);
+      border: 2px solid #0ea5e9;
+      border-radius: 8px;
+      color: #e0e0e0;
+      padding: 1rem;
+      resize: vertical;
+      transition: all 0.3s ease;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .decrypt-areas {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .decrypt-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .decrypt-row {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Modal de inicio -->
+  <div id="password-modal">
+    <input type="password" id="start-pass" placeholder="Clave de inicio" />
+    <button id="start-btn">Entrar</button>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div id="container">
+    <h1>SILENZ</h1>
+    <div class="grid-layout">
+      <h2 class="section-title">CIFRAR</h2>
+      <!-- Cuadro 1: Mensaje -->
+      <div class="grid-item">
+        <textarea id="plain" placeholder="Escribe tu mensaje…"></textarea>
+        <button class="action" id="encBtn">C1fr4r</button>
+      </div>
+      
+      <!-- Cuadro 2: Texto cifrado -->
+      <div class="grid-item">
+        <div class="buttons-row">
+          <button class="copy-paste-btn" id="copyBtn">Copiar</button>
+        </div>
+        <textarea id="cipher" placeholder="Texto cifrado…"></textarea>
+      </div>
+
+      <h2 class="section-title">DESCIFRAR</h2>
+      <!-- Cuadro 3: Input descifrado -->
+      <div class="grid-item">
+        <div class="buttons-row">
+          <button class="copy-paste-btn" id="pasteBtn">Pegar texto cifrado</button>
+        </div>
+        <textarea id="cipherInput" placeholder="Pegar texto cifrado aquí…"></textarea>
+        <button class="action" id="decBtn">D3sc1fr4r</button>
+      </div>
+      
+      <!-- Cuadro 4: Resultado -->
+      <div class="grid-item">
+        <textarea id="decrypted" placeholder="Resultado…"></textarea>
+      </div>
+    </div>
+    <button class="action" id="resetBtn" style="width: auto; margin: 1rem auto;">Reiniciar</button>
+  </div>
+
+  <script>
+    // --- Configuración ---
+    const INIT_PASSWORD = 'silenz';     
+    const PASSWORD = 'Vl4tt2025!';       
+    const ROUNDS = 5;                    
+
+    // Base64 <-> ArrayBuffer
+    function bufToBase64(buf) {
+      return btoa(String.fromCharCode(...new Uint8Array(buf)));
+    }
+    function base64ToBuf(b64) {
+      const str = atob(b64);
+      const arr = new Uint8Array(str.length);
+      for (let i = 0; i < str.length; i++) arr[i] = str.charCodeAt(i);
+      return arr.buffer;
+    }
+
+    // Derivar clave AES-GCM de 256 bits vía PBKDF2
+    async function deriveKey(password) {
+      const pwUtf8 = new TextEncoder().encode(password);
+      const salt = new Uint8Array([1,2,3,4,5,6,7,8]); // demo fijo
+      const baseKey = await crypto.subtle.importKey(
+        'raw', pwUtf8, 'PBKDF2', false, ['deriveKey']
+      );
+      return crypto.subtle.deriveKey(
+        { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+        baseKey,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt','decrypt']
+      );
+    }
+
+    // Clase para 5 rondas de AES-GCM
+    class MultiAESGCM {
+      constructor(key) { this.key = key; }
+
+      async encrypt(message) {
+        let data = new TextEncoder().encode(message);
+        const layers = [];
+        for (let i = 0; i < ROUNDS; i++) {
+          const iv = crypto.getRandomValues(new Uint8Array(12));
+          const ct = await crypto.subtle.encrypt(
+            { name: 'AES-GCM', iv },
+            this.key,
+            data
+          );
+          layers.push({ iv: bufToBase64(iv), ct: bufToBase64(ct) });
+          data = new Uint8Array(ct);
+        }
+        return JSON.stringify(layers);
+      }
+
+      async decrypt(jsonStr) {
+        const layers = JSON.parse(jsonStr);
+        let data;
+        for (let i = layers.length - 1; i >= 0; i--) {
+          const { iv, ct } = layers[i];
+          const plainBuf = await crypto.subtle.decrypt(
+            { name: 'AES-GCM', iv: base64ToBuf(iv) },
+            this.key,
+            base64ToBuf(ct)
+          );
+          data = new Uint8Array(plainBuf);
+        }
+        return new TextDecoder().decode(data);
+      }
+    }
+
+    // --- Lógica UI ---
+    function checkPassword() {
+      const val = document.getElementById('start-pass').value;
+      if (val === INIT_PASSWORD) {
+        document.getElementById('password-modal').style.display = 'none';
+        document.getElementById('container').style.display = 'flex';
+        initCipher();
+      } else {
+        alert('Clave incorrecta');
+        document.getElementById('start-pass').value = '';
+      }
+    }
+
+    document.getElementById('start-btn').onclick = checkPassword;
+    
+    document.getElementById('start-pass').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    async function initCipher() {
+      const key = await deriveKey(PASSWORD);
+      const coder = new MultiAESGCM(key);
+
+      const plainTA = document.getElementById('plain');
+      const cipherTA = document.getElementById('cipher');
+      const cipherInputTA = document.getElementById('cipherInput');
+      const decTA = document.getElementById('decrypted');
+
+      document.getElementById('copyBtn').onclick = () => {
+        navigator.clipboard.writeText(cipherTA.value);
+      };
+
+      document.getElementById('pasteBtn').onclick = async () => {
+        try {
+          cipherInputTA.value = await navigator.clipboard.readText();
+        } catch (e) {
+          alert('Error al pegar: ' + e.message);
+        }
+      };
+
+      document.getElementById('encBtn').onclick = async () => {
+        try {
+          cipherTA.value = await coder.encrypt(plainTA.value);
+          decTA.value = '';
+        } catch (e) {
+          alert('Error cifrando: ' + e.message);
+        }
+      };
+
+      document.getElementById('decBtn').onclick = async () => {
+        try {
+          decTA.value = await coder.decrypt(cipherInputTA.value);
+        } catch (e) {
+          alert('Error descifrando: ' + e.message);
+        }
+      };
+
+      document.getElementById('resetBtn').onclick = () => {
+        plainTA.value = cipherTA.value = cipherInputTA.value = decTA.value = '';
+      };
+    }
+  </script>
+
+</body>
+</html>
