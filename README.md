@@ -3,12 +3,14 @@
 ## SILENZ es un módulo de cifrado simple pero seguro y util diseñado para desarrolladores y profesionales de ciberseguridad. Implementa AES-GCM (256-bit) con múltiples rondas de procesamiento, optimizado para garantizar confidencialidad e integridad de datos en entornos críticos. Su arquitectura client-side lo hace ideal para integrar en sistemas de mensajería, aplicaciones web o herramientas de análisis forense donde la privacidad es prioritaria.
 ### Características Técnicas
 
-    Cifrado en cascada: 5 iteraciones AES-GCM con IV único por capa, mitigando riesgos de colisión y ataques de canal lateral.
+ >   Cifrado en cascada: 5 iteraciones AES-GCM con IV único por capa, mitigando riesgos de colisión y ataques de canal lateral.
     Key Derivation robusta: Utiliza PBKDF2 con 100,000 iteraciones para derivar claves maestras a partir de contraseñas.
     Zero Trust Design: Procesamiento 100% offline; ni claves ni datos salen del entorno del usuario.
     Compatibilidad estratégica: Exporta resultados en Base64/Hex para integración en APIs, sockets o almacenamiento seguro.
     Auditable: Código minimalista (sub-400 líneas) para verificación sencilla de implementación criptográfica.
-## ::::::Aclaro que aun esta en progreso:::::::
+
+## ***Aclaro que aun esta en desarrollo***
+
 ### Implementación en Proyectos
 ## Requisitos:
 
@@ -17,7 +19,7 @@
 
 ### Abre silenz.html y autentícate con la clave de acceso inicial.
 
-## CONTRASEÑA: silenz 
+## CONTRASEÑA: **silenz**
 
 ## Cifrado:
 
