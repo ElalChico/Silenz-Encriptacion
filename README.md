@@ -1,32 +1,32 @@
-SILENZ: AES-GCM Multi-Layer Encryption Framework
+# SILENZ: AES-GCM Multi-Layer Encryption Framework
 
-SILENZ es un módulo de cifrado seguro diseñado para desarrolladores y profesionales de ciberseguridad. Implementa AES-GCM (256-bit) con múltiples rondas de procesamiento, optimizado para garantizar confidencialidad e integridad de datos en entornos críticos. Su arquitectura client-side lo hace ideal para integrar en sistemas de mensajería, aplicaciones web o herramientas de análisis forense donde la privacidad es prioritaria.
-Características Técnicas
+## SILENZ es un módulo de cifrado simple pero seguro y util diseñado para desarrolladores y profesionales de ciberseguridad. Implementa AES-GCM (256-bit) con múltiples rondas de procesamiento, optimizado para garantizar confidencialidad e integridad de datos en entornos críticos. Su arquitectura client-side lo hace ideal para integrar en sistemas de mensajería, aplicaciones web o herramientas de análisis forense donde la privacidad es prioritaria.
+### Características Técnicas
 
     Cifrado en cascada: 5 iteraciones AES-GCM con IV único por capa, mitigando riesgos de colisión y ataques de canal lateral.
     Key Derivation robusta: Utiliza PBKDF2 con 100,000 iteraciones para derivar claves maestras a partir de contraseñas.
     Zero Trust Design: Procesamiento 100% offline; ni claves ni datos salen del entorno del usuario.
     Compatibilidad estratégica: Exporta resultados en Base64/Hex para integración en APIs, sockets o almacenamiento seguro.
     Auditable: Código minimalista (sub-400 líneas) para verificación sencilla de implementación criptográfica.
-
-Implementación en Proyectos
-Requisitos:
+## ::::::Aclaro que aun esta en progreso:::::::
+### Implementación en Proyectos
+## Requisitos:
 
     Navegadores modernos (Chrome 108+, Firefox 102+) con soporte para Web Crypto API.
     Node.js 18+ (para uso en backend o herramientas CLI).
 
-Abre silenz.html y autentícate con la clave de acceso inicial.
+### Abre silenz.html y autentícate con la clave de acceso inicial.
 
-CONTRASEÑA: silenz 
+## CONTRASEÑA: silenz 
 
-Cifrado:
+## Cifrado:
 
           // Ejemplo de cifrado programático
           const cipherCore = new SILENZ();
           await cipherCore.initialize();
           const encryptedPayload = await cipherCore.encryptLayer(plaintext, masterKey);
 
-Descifrado:
+## Descifrado:
 
 const decryptedData = await cipherCore.decryptLayer(encryptedPayload, masterKey);
 
@@ -58,7 +58,7 @@ Advertencias Legales y Éticas
 
     Responsabilidad de Uso
 
-SILENZ se proporciona "tal cual", sin garantías implícitas de seguridad o aptitud para un propósito específico.
+#### SILENZ se proporciona "tal cual", sin garantías implícitas de seguridad o aptitud para un propósito específico.
 
 El usuario final asume toda responsabilidad por el uso ético y legal de esta herramienta, incluyendo pero no limitado a:
 
@@ -70,7 +70,7 @@ Gestión segura de claves y materiales criptográficos.
 
     Restricciones
 
-Prohibido su uso en:
+## Prohibido su uso en:
 
 Sistemas críticos (sanidad, energía) sin autorización expresa.
 
