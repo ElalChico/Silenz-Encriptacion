@@ -17,6 +17,8 @@ Requisitos:
 
 Abre silenz.html y autentícate con la clave de acceso inicial.
 
+< CONTRASEÑA: silenz >
+
 Cifrado:
 
           // Ejemplo de cifrado programático
@@ -72,7 +74,7 @@ Prohibido su uso en:
 
 Sistemas críticos (sanidad, energía) sin autorización expresa.
 
-Actividades que comprometan la privacidad o seguridad de entidades no autorizadas.
+<Actividades que comprometan la privacidad o seguridad de entidades no autorizadas>
 
 Desarrollo de malware, ransomware o herramientas de vigilancia ilegal.
 
