@@ -17,7 +17,7 @@ Requisitos:
 
 Abre silenz.html y autentícate con la clave de acceso inicial.
 
-< CONTRASEÑA: silenz >
+CONTRASEÑA: silenz 
 
 Cifrado:
 
