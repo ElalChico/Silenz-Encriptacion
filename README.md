@@ -9,7 +9,7 @@
     Compatibilidad estratégica: Exporta resultados en Base64/Hex para integración en APIs, sockets o almacenamiento seguro.
     Auditable: Código minimalista (sub-400 líneas) para verificación sencilla de implementación criptográfica.
 
-## ***Aclaro que aun esta en desarrollo***
+## ***Aclaro que aun esta en desarrollo*** **Ya Aqui esta la versión** 2 https://github.com/ElalChico/Silenz-Encriptacion/blob/main/silenz%20v2.html
 
 ### Implementación en Proyectos
 ## Requisitos:
